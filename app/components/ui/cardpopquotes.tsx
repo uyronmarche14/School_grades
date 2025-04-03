@@ -27,7 +27,7 @@ const CommentCard = ({
       }}
       whileInView={{ opacity: 1 }}
     >
-      <div className="bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-xl border border-white/30">
+      <div className="bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-md shadow-purple-500 border border-white/30 ">
         <div className="flex items-start space-x-4">
           <div className="flex-1">
             <p className="text-white/80 text-sm italic">"{quote}"</p>

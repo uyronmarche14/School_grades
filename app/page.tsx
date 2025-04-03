@@ -17,7 +17,7 @@ export default function Home() {
         <Bg
           speed={1.0}
           squareSize={75}
-          direction="up"
+          direction="diagonal"
           borderColor="#fff"
           hoverFillColor="#222"
         />
@@ -34,61 +34,67 @@ export default function Home() {
         className="h-[100vh] w-full flex items-center justify-center"
       >
         <CommentCard
-          position={{ top: "10rem", left: "4rem" }}
+          position={{ top: "50rem", right: "48rem" }}
+          quote="Congrats om Making it, your hard work pays off thank you for giving your best if you are 1st year to 3rd year fighting if your a 4th year congrats on finishing it "
+          author="Ron Marche Rhyss Q. Uy"
+          delay={5.0}
+        />
+        <CommentCard
+          position={{ top: "10rem", left: "6rem" }}
           quote="Success is not final, failure is not fatal: it is the courage to continue that counts."
           author="Winston Churchill"
           delay={0.3}
         />
         <CommentCard
-          position={{ top: "20rem", left: "2rem" }}
+          position={{ top: "20rem", left: "4rem" }}
           quote="Education is the most powerful weapon which you can use to change the world."
           author="Nelson Mandela"
           delay={0.5}
         />
         <CommentCard
-          position={{ top: "30rem", left: "1rem" }}
+          position={{ top: "30rem", left: "2rem" }}
           quote="Education is the most powerful weapon which you can use to change the world."
           author="Nelson Mandela"
           delay={0.7}
         />
         <CommentCard
-          position={{ top: "40rem", left: "2rem" }}
+          position={{ top: "40rem", left: "4rem" }}
           quote="Education is the most powerful weapon which you can use to change the world."
           author="Nelson Mandela"
           delay={0.9}
         />
         <CommentCard
-          position={{ top: "50rem", left: "4rem" }}
+          position={{ top: "50rem", left: "6rem" }}
           quote="Education is the most powerful weapon which you can use to change the world."
           author="Nelson Mandela"
           delay={1.1}
         />
         <CommentCard
-          position={{ top: "10rem", right: "4rem" }}
+          position={{ top: "10rem", right: "6rem" }}
           quote="Success is not final, failure is not fatal: it is the courage to continue that counts."
           author="Winston Churchill"
           delay={0.3}
         />
         <CommentCard
-          position={{ top: "20rem", right: "2rem" }}
+          position={{ top: "20rem", right: "4rem" }}
           quote="Education is the most powerful weapon which you can use to change the world."
           author="Nelson Mandela"
           delay={0.5}
         />
         <CommentCard
-          position={{ top: "30rem", right: "1rem" }}
+          position={{ top: "30rem", right: "2rem" }}
           quote="Education is the most powerful weapon which you can use to change the world."
           author="Nelson Mandela"
           delay={0.7}
         />
         <CommentCard
-          position={{ top: "40rem", right: "2rem" }}
+          position={{ top: "40rem", right: "4rem" }}
           quote="Education is the most powerful weapon which you can use to change the world."
           author="Nelson Mandela"
           delay={0.9}
         />
         <CommentCard
-          position={{ top: "50rem", right: "4rem" }}
+          position={{ top: "50rem", right: "6rem" }}
           quote="Education is the most powerful weapon which you can use to change the world."
           author="Nelson Mandela"
           delay={1.1}
@@ -113,17 +119,20 @@ export default function Home() {
             <Image
               src={BSIS}
               alt="BSIS Logo"
-              width={80}
-              height={80}
+              width={70}
+              height={70}
               className="object-contain"
             />
           </div>
         </div>
-        <div className="mx-auto text-center">
-          <h1 className="text-8xl font-bold text-white/90 py-4">
+        <div className="absolute mx-auto text-center">
+          <p className="text-3xl text-white/50">
+            From yours truly ICT-SF Organization
+          </p>
+          <h1 className="text-[90px] font-bold text-white/90 ">
             CICT GRADES VIEW
           </h1>
-          <p className="text-lg text-white/90">
+          <p className="text-md text-white/50">
             To all students who worked hard to make it to the Dean's List, we
             salute you!
           </p>
@@ -131,9 +140,9 @@ export default function Home() {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto py-10 px-4">
+      <motion.div className="relative z-10 container mx-auto py-10 px-4">
         <h1 className="text-4xl font-bold text-white/90 mb-8 text-center">
-          Student Records
+          Bachelor Of Science In Computer Science
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 auto-rows-max">
           {CSdata.map((student) => (
@@ -142,7 +151,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </main>
   );
 }

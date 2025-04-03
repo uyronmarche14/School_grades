@@ -4,8 +4,7 @@ import "./globals.css";
 
 const spaceMono = Space_Mono({
   variable: "--font-space-mono",
-  weight: "400",
-  subsets: ["latin"],
+  weight: "700",
 });
 
 export const metadata: Metadata = {
