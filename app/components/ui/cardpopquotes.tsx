@@ -19,8 +19,8 @@ const CommentCard = ({
   const variants = {
     initial: {
       opacity: 0,
-      x: isLeftPosition ? -100 : 100,
-      rotate: isLeftPosition ? -5 : 5,
+      x: isLeftPosition ? -50 : 50,
+      rotate: isLeftPosition ? -3 : 3,
     },
     animate: {
       opacity: 1,
@@ -31,13 +31,13 @@ const CommentCard = ({
 
   return (
     <motion.div
-      className="absolute max-w-[280px] sm:max-w-sm hidden sm:block"
+      className="absolute max-w-[300px] lg:max-w-sm xl:max-w-md "
       style={position}
       variants={variants}
       initial="initial"
       animate="animate"
       transition={{
-        duration: 0.8,
+        duration: 0.6,
         ease: "easeOut",
         delay,
         type: "spring",
@@ -45,11 +45,11 @@ const CommentCard = ({
       }}
       whileInView={{ opacity: 1 }}
     >
-      <div className="bg-white/10 backdrop-blur-lg rounded-lg p-3 sm:p-6 shadow-md shadow-purple-500/30 border border-white/20 hover:border-white/30 transition-colors">
-        <p className="text-white/80 text-xs sm:text-sm italic leading-relaxed">
+      <div className="bg-white/10 backdrop-blur-lg rounded-lg p-4 lg:p-5 shadow-md shadow-purple-500/30 border border-white/20 hover:border-white/30 transition-colors">
+        <p className="text-white/80 text-sm lg:text-base italic leading-relaxed">
           &quot;{quote}&quot;
         </p>
-        <p className="text-white/60 text-[10px] sm:text-xs mt-2 font-medium">
+        <p className="text-white/60 text-xs lg:text-sm mt-2 font-medium">
           - {author}
         </p>
       </div>
