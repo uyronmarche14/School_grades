@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Bg from "@/app/components/ui/bg";
-import StudentCard from "@/app/feature/cards/page";
+import StudentCard from "@/app/components/cards/StudentCard";
 import CSdata from "@/data/csdata.json";
 import quotesData from "@/data/quotesData.json";
 import { motion } from "framer-motion";
