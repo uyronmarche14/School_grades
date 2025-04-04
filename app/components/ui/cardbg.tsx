@@ -187,7 +187,7 @@ export default function PixelCard({
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pixelsRef = useRef<Pixel[]>([]);
-  const animationRef = useRef<number>(null);
+  const animationRef = useRef<number>(0);
   const timePreviousRef = useRef(performance.now());
   const reducedMotion = useRef(
     window.matchMedia("(prefers-reduced-motion: reduce)").matches,
@@ -241,6 +241,9 @@ export default function PixelCard({
   };
 
   const doAnimate = (fnName: keyof Pixel) => {
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
     animationRef.current = requestAnimationFrame(() => doAnimate(fnName));
     const timeNow = performance.now();
     const timePassed = timeNow - timePreviousRef.current;
@@ -269,7 +272,9 @@ export default function PixelCard({
   };
 
   const handleAnimation = (name: keyof Pixel) => {
-    cancelAnimationFrame(animationRef.current);
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
     animationRef.current = requestAnimationFrame(() => doAnimate(name));
   };
 
@@ -294,7 +299,9 @@ export default function PixelCard({
     }
     return () => {
       observer.disconnect();
-      cancelAnimationFrame(animationRef.current);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [finalGap, finalSpeed, finalColors, finalNoFocus]);
