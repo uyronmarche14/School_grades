@@ -260,4 +260,24 @@ const StudentCard: React.FC<{ student: StudentData }> = ({ student }) => {
   );
 };
 
-export default StudentCard;
+// Add new page component
+const CardsPage: React.FC = () => {
+  // Example student data - replace with your actual data source
+  const exampleStudent: StudentData = {
+    "No.": "1",
+    "Student No.": "2020-12345",
+    Name: "John Doe",
+    "Year Level": "3",
+    "Lowest Grade": "2.25",
+    GWA: "1.75",
+    profile: "/path/to/profile.jpg",
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <StudentCard student={exampleStudent} />
+    </div>
+  );
+};
+
+export default CardsPage;
