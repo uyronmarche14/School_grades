@@ -1,44 +1,78 @@
 "use client";
-import React, { useState, ReactNode } from "react";
+import React from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 interface TiltProps {
-  children: ReactNode;
+  children: React.ReactNode;
+  disabled?: boolean;
 }
 
-const Tilt: React.FC<TiltProps> = ({ children }) => {
-  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+const Tilt: React.FC<TiltProps> = ({ children, disabled = false }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(
+    mouseYSpring,
+    [-0.5, 0.5],
+    ["10.5deg", "-10.5deg"], // Reduced from 17.5 to 7.5
+  );
+  const rotateY = useTransform(
+    mouseXSpring,
+    [-0.5, 0.5],
+    ["-10.5deg", "10.5deg"], // Reduced from 17.5 to 7.5
+  );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const box = card.getBoundingClientRect();
-    const x = e.clientX - box.left;
-    const y = e.clientY - box.top;
+    if (disabled) return;
 
-    const centerX = box.width / 2;
-    const centerY = box.height / 2;
+    const rect = e.currentTarget.getBoundingClientRect();
 
-    const rotateX = ((y - centerY) / 10).toFixed(2); // Reduced tilt effect
-    const rotateY = (-(x - centerX) / 10).toFixed(2); // Reduced tdlt effect
+    const width = rect.width;
+    const height = rect.height;
 
-    setRotation({ x: parseFloat(rotateX), y: parseFloat(rotateY) });
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
   };
 
   const handleMouseLeave = () => {
-    setRotation({ x: 0, y: 0 });
+    x.set(0);
+    y.set(0);
   };
 
+  if (disabled) {
+    return <div>{children}</div>;
+  }
+
   return (
-    <div
-      className="transition-transform duration-200 ease-out"
-      style={{
-        transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) scale3d(1.01, 1.01, 1.01)`, // Reduced scale effect
-        transformStyle: "preserve-3d",
-      }}
+    <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      className="w-full"
     >
-      {children}
-    </div>
+      <div
+        style={{
+          transform: "translateZ(50px)", // Reduced from 75px to 50px
+          transformStyle: "preserve-3d",
+        }}
+        className="w-full"
+      >
+        {children}
+      </div>
+    </motion.div>
   );
 };
 

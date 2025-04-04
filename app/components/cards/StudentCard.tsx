@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Tilt from "@/app/components/animation/tilt";
 import { motion, AnimatePresence } from "framer-motion";
 import * as htmlToImage from "html-to-image";
@@ -18,8 +18,18 @@ interface StudentData {
 
 const StudentCard: React.FC<{ student: StudentData }> = ({ student }) => {
   const [isEnlarged, setIsEnlarged] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const cardRef = useRef<HTMLDivElement>(null);
   const enlargedCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsDisabled(window.innerWidth < 768);
+    const handleResize = () => {
+      setIsDisabled(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Generate image for sharing
   const generateShareableImage = async (): Promise<string> => {
@@ -99,7 +109,7 @@ const StudentCard: React.FC<{ student: StudentData }> = ({ student }) => {
       }`}
     >
       <div className="relative bg-gradient-to-b from-black to-slate-900 p-4 sm:p-5">
-        <div className="flex flex-col gap-2 mb-4">
+        <div className="flex flex-col gap-4 mb-4">
           <h1
             className={`font-bold text-white/90 leading-tight ${
               isEnlarged ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"
@@ -217,11 +227,13 @@ const StudentCard: React.FC<{ student: StudentData }> = ({ student }) => {
     <>
       <div
         style={{ perspective: "1500px" }}
-        className="w-full max-w-[300px] sm:max-w-[350px]"
+        className="w-full max-w-[300px] sm:max-w-[350px] p-2"
         onClick={() => setIsEnlarged(true)}
       >
-        <Tilt disabled={window.innerWidth < 768}>
-          <CardContent />
+        <Tilt disabled={isDisabled}>
+          <div className="transform-gpu transition-transform duration-300 hover:scale-[1.02] hover:shadow-purple-400/30 shadow-2xl shadow-white/20 rounded-xl overflow-hidden">
+            <CardContent />
+          </div>
         </Tilt>
       </div>
 
