@@ -31,7 +31,7 @@ const CommentCard = ({
 
   return (
     <motion.div
-      className="absolute max-w-sm"
+      className="absolute max-w-[280px] sm:max-w-sm hidden sm:block"
       style={position}
       variants={variants}
       initial="initial"
@@ -45,9 +45,13 @@ const CommentCard = ({
       }}
       whileInView={{ opacity: 1 }}
     >
-      <div className="bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-md shadow-purple-500 border border-white/30">
-        <p className="text-white/80 text-sm italic">&quot;{quote}&quot;</p>
-        <p className="text-white/60 text-xs mt-2">- {author}</p>
+      <div className="bg-white/10 backdrop-blur-lg rounded-lg p-3 sm:p-6 shadow-md shadow-purple-500/30 border border-white/20 hover:border-white/30 transition-colors">
+        <p className="text-white/80 text-xs sm:text-sm italic leading-relaxed">
+          &quot;{quote}&quot;
+        </p>
+        <p className="text-white/60 text-[10px] sm:text-xs mt-2 font-medium">
+          - {author}
+        </p>
       </div>
     </motion.div>
   );

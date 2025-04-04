@@ -217,10 +217,10 @@ const StudentCard: React.FC<{ student: StudentData }> = ({ student }) => {
     <>
       <div
         style={{ perspective: "1500px" }}
-        className="w-full max-w-[350px]"
+        className="w-full max-w-[300px] sm:max-w-[350px]"
         onClick={() => setIsEnlarged(true)}
       >
-        <Tilt>
+        <Tilt disabled={window.innerWidth < 768}>
           <CardContent />
         </Tilt>
       </div>
@@ -232,19 +232,19 @@ const StudentCard: React.FC<{ student: StudentData }> = ({ student }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsEnlarged(false)}
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center backdrop-blur-sm cursor-pointer p-4"
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center backdrop-blur-sm cursor-pointer p-2 sm:p-4"
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-[500px] md:max-w-[600px] cursor-default"
+              className="relative w-full max-w-[350px] sm:max-w-[500px] md:max-w-[600px] cursor-default"
             >
               <CardContent isEnlarged={true} forRef="enlarged" />
 
               {/* Download button */}
-              <div className="absolute -bottom-16 right-4">
+              <div className="absolute -bottom-12 sm:-bottom-16 right-2 sm:right-4">
                 <button
                   onClick={handleDownload}
                   className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center transform transition-transform hover:scale-110"
