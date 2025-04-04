@@ -17,8 +17,8 @@ const Tilt: React.FC<TiltProps> = ({ children }) => {
     const centerX = box.width / 2;
     const centerY = box.height / 2;
 
-    const rotateX = ((y - centerY) / 15).toFixed(2); // Reduced tilt effect
-    const rotateY = (-(x - centerX) / 15).toFixed(2); // Reduced tilt effect
+    const rotateX = ((y - centerY) / 10).toFixed(2); // Reduced tilt effect
+    const rotateY = (-(x - centerX) / 10).toFixed(2); // Reduced tdlt effect
 
     setRotation({ x: parseFloat(rotateX), y: parseFloat(rotateY) });
   };
