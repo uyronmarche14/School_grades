@@ -4,6 +4,7 @@ import Tilt from "@/app/components/animation/tilt";
 import { motion, AnimatePresence } from "framer-motion";
 import * as htmlToImage from "html-to-image";
 import { ArrowDownToLine } from "lucide-react";
+import Image from "next/image";
 
 interface StudentData {
   "No.": string;
@@ -44,9 +45,8 @@ const StudentCard: React.FC<{ student: StudentData }> = ({ student }) => {
       });
       elementToCapture.classList.remove("html-to-image-ready");
       return dataUrl;
-    } catch (error) {
-      console.error("Error generating shareable image:", error);
-      throw error;
+    } catch {
+      throw new Error("Failed to generate image");
     }
   };
 
@@ -58,11 +58,11 @@ const StudentCard: React.FC<{ student: StudentData }> = ({ student }) => {
       const link = document.createElement("a");
       link.download = `${student.Name.replace(
         /\s+/g,
-        "-"
+        "-",
       ).toLowerCase()}-card.png`;
       link.href = dataUrl;
       link.click();
-    } catch (error) {
+    } catch {
       alert("There was an error generating the image. Please try again.");
     }
   };
@@ -122,17 +122,19 @@ const StudentCard: React.FC<{ student: StudentData }> = ({ student }) => {
               }`}
             >
               {`${student["Year Level"]}${getYearSuffix(
-                student["Year Level"]
+                student["Year Level"],
               )} Year`}
             </span>
           </div>
         </div>
 
         <div className="w-full aspect-[4/5] rounded-lg bg-black/40 mb-4 overflow-hidden">
-          <img
+          <Image
             src={student.profile}
             alt={student.Name}
             className="w-full h-full object-cover object-center"
+            width={500}
+            height={700}
           />
         </div>
 

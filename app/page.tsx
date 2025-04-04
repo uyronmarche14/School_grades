@@ -83,8 +83,8 @@ export default function Home() {
             transition={{ delay: 0.7 }}
             className="text-md text-white drop-shadow-[0_0_8px_rgba(0,0,0,0.5)]"
           >
-            To all students who worked hard to make it to the Dean's List, we
-            salute you!
+            To all students who worked hard to make it to the Dean&apos;s List,
+            we salute you!
           </motion.p>
         </div>
       </motion.div>

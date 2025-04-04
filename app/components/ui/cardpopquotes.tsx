@@ -46,7 +46,7 @@ const CommentCard = ({
       whileInView={{ opacity: 1 }}
     >
       <div className="bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-md shadow-purple-500 border border-white/30">
-        <p className="text-white/80 text-sm italic">"{quote}"</p>
+        <p className="text-white/80 text-sm italic">&quot;{quote}&quot;</p>
         <p className="text-white/60 text-xs mt-2">- {author}</p>
       </div>
     </motion.div>
