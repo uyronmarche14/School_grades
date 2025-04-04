@@ -80,7 +80,7 @@ const StudentCard: React.FC<{ student: StudentData }> = ({ student }) => {
   const formatGrade = (grade: string): string => {
     try {
       return parseFloat(grade).toFixed(2);
-    } catch (error) {
+    } catch {
       return grade;
     }
   };

@@ -75,7 +75,7 @@ export default function Home() {
             transition={{ delay: 0.5 }}
             className="text-[90px] font-bold text-white drop-shadow-[0_0_15px_rgba(0,0,0,0.7)] tracking-tight"
           >
-            CICT DEAN'S LISTER
+            CICT DEAN&apos;S LISTER
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: -20 }}
